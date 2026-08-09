@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#1A1A2E}*{box-sizing:border-box}a{color:#4CD4E8}a:hover{color:#7fe3f5}</style>
+</helmet>
+<div style="font-family:'Inter',sans-serif;background:#1A1A2E;color:#fff;min-height:100vh;padding-bottom:80px">
+  <div style="position:sticky;top:0;z-index:10;height:64px;background:#16213E;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 32px">
+    <div style="display:flex;align-items:center;gap:36px">
+      <a href="Dashboard.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff">
+        <div style="width:16px;height:16px;background:#E94560;transform:rotate(45deg);border-radius:2px"></div>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:800;font-size:17px">VALORANT<span style="color:#E94560">HUB</span></span>
+      </a>
+      <div style="display:flex;gap:28px">
+        <a href="Dashboard.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Dashboard</a>
+        <a href="Analisis-Partida.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Análisis</a>
+        <span style="font-size:14px;font-weight:600;color:#fff;border-bottom:2px solid #E94560;padding-bottom:20px">Recomendaciones</span>
+        <a href="Coaching.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Coaching</a>
+        <a href="Perfil.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Perfil</a>
+      </div>
+    </div>
+    <a href="Perfil.dc.html" style="display:flex;align-items:center;gap:14px;text-decoration:none">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:#4CD4E8;background:rgba(76,212,232,0.1);padding:4px 10px;border-radius:4px">DIAMANTE 3</span>
+      <div style="width:34px;height:34px;border-radius:50%;background:#0F3460;border:2px solid #E94560"></div>
+    </a>
+  </div>
+
+  <div style="max-width:900px;margin:0 auto;padding:40px 32px 0">
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:800;margin:0 0 20px">Recomendaciones</h1>
+
+    <div style="display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="5">
+        <div onclick="{{ setFilter(f.key) }}" style="cursor:pointer;font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;background:{{ f.bg }};color:{{ f.color }};border:1px solid {{ f.border }}">{{ f.label }}</div>
+      </sc-for>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <sc-for list="{{ visibleTips }}" as="t" hint-placeholder-count="6">
+        <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:18px 20px">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+            <span style="font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;background:{{ t.tagBg }};color:{{ t.tagColor }};padding:3px 10px;border-radius:20px">{{ t.category }}</span>
+            <span style="font-size:11px;font-weight:700;color:{{ t.priorityColor }}">● Prioridad {{ t.priority }}</span>
+          </div>
+          <div style="font-size:14px;line-height:1.55;color:rgba(255,255,255,0.85)">{{ t.text }}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { filter: 'all' };
+  allTips = [
+    { category:'Posicionamiento', key:'pos', tagBg:'#0F3460', tagColor:'#fff', priority:'Alta', priorityColor:'#E94560', text:'Jugás muy adelantado en sitio B en Ascent. Rotá 2s más tarde tras el primer intercambio.' },
+    { category:'Economía', key:'eco', tagBg:'#F0C808', tagColor:'#1A1A2E', priority:'Alta', priorityColor:'#E94560', text:'Estás forzando compras en rondas de reconstrucción. Guarda para llegar a full-buy.' },
+    { category:'Habilidades', key:'hab', tagBg:'#4CD4E8', tagColor:'#1A1A2E', priority:'Media', priorityColor:'#F0C808', text:'Tu Sova dart llega tarde en retakes. Practicá los line-ups de A Site en Bind.' },
+    { category:'General', key:'gen', tagBg:'rgba(255,255,255,0.12)', tagColor:'#fff', priority:'Baja', priorityColor:'#4CD4E8', text:'Tu tasa de primeras muertes bajó 8% este mes. Buen progreso en entradas a sitio.' },
+    { category:'Posicionamiento', key:'pos', tagBg:'#0F3460', tagColor:'#fff', priority:'Media', priorityColor:'#F0C808', text:'En Haven, tendés a agruparte en sitio C. Separá las líneas de visión con tu duelista.' },
+    { category:'Economía', key:'eco', tagBg:'#F0C808', tagColor:'#1A1A2E', priority:'Media', priorityColor:'#F0C808', text:'No estás comprando escudo completo en rondas de anti-eco. Prioriza defensa antes que utilidad extra.' },
+    { category:'Habilidades', key:'hab', tagBg:'#4CD4E8', tagColor:'#1A1A2E', priority:'Baja', priorityColor:'#4CD4E8', text:'Buen uso de Cloudburst para entradas. Repetí ese patrón en mapas con sitios abiertos.' },
+    { category:'General', key:'gen', tagBg:'rgba(255,255,255,0.12)', tagColor:'#fff', priority:'Alta', priorityColor:'#E94560', text:'Tu winrate cae 15% en el rol de duelista comparado con iniciador. Considerá practicar iniciador esta semana.' }
+  ];
+  renderVals() {
+    const filters = [
+      { key:'all', label:'Todas' }, { key:'pos', label:'Posicionamiento' }, { key:'eco', label:'Economía' },
+      { key:'hab', label:'Habilidades' }, { key:'gen', label:'General' }
+    ].map(f => ({ ...f, bg: this.state.filter===f.key ? '#E94560' : '#16213E', color:'#fff', border: this.state.filter===f.key ? '#E94560' : 'rgba(255,255,255,0.1)' }));
+    const visibleTips = this.state.filter==='all' ? this.allTips : this.allTips.filter(t=>t.key===this.state.filter);
+    return { filters, visibleTips, setFilter: (k)=>()=>this.setState({filter:k}) };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#1A1A2E}*{box-sizing:border-box}a{color:#4CD4E8}a:hover{color:#7fe3f5}</style>
+</helmet>
+<div style="font-family:'Inter',sans-serif;background:#1A1A2E;color:#fff;min-height:100vh;padding-bottom:80px">
+  <div style="position:sticky;top:0;z-index:10;height:64px;background:#16213E;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 32px">
+    <div style="display:flex;align-items:center;gap:36px">
+      <a href="Dashboard.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff">
+        <div style="width:16px;height:16px;background:#E94560;transform:rotate(45deg);border-radius:2px"></div>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:800;font-size:17px">VALORANT<span style="color:#E94560">HUB</span></span>
+      </a>
+      <div style="display:flex;gap:28px">
+        <span style="font-size:14px;font-weight:600;color:#fff;border-bottom:2px solid #E94560;padding-bottom:20px">Dashboard</span>
+        <a href="Analisis-Partida.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Análisis</a>
+        <a href="Recomendaciones.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Recomendaciones</a>
+        <a href="Coaching.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Coaching</a>
+        <a href="Perfil.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Perfil</a>
+      </div>
+    </div>
+    <a href="Perfil.dc.html" style="display:flex;align-items:center;gap:14px;text-decoration:none">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:#4CD4E8;background:rgba(76,212,232,0.1);padding:4px 10px;border-radius:4px">DIAMANTE 3</span>
+      <div style="width:34px;height:34px;border-radius:50%;background:#0F3460;border:2px solid #E94560"></div>
+    </a>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:40px 32px 0">
+    <div style="margin-bottom:32px">
+      <h1 style="font-family:'DM Sans',sans-serif;font-size:26px;font-weight:800;margin:0 0 4px">Hola, Kaito</h1>
+      <p style="font-size:14px;color:rgba(255,255,255,0.5);margin:0">Resumen de tu rendimiento reciente</p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:32px">
+      <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.5)">KDA</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:30px;margin-top:6px">1.34</div>
+        <div style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:#4CD4E8;background:rgba(76,212,232,0.12);padding:2px 8px;border-radius:20px">▲ 0.12</div>
+      </div>
+      <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.5)">Winrate</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:30px;margin-top:6px">58%</div>
+        <div style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:#4CD4E8;background:rgba(76,212,232,0.12);padding:2px 8px;border-radius:20px">▲ 4.2%</div>
+      </div>
+      <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.5)">Partidas</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:30px;margin-top:6px">142</div>
+        <div style="margin-top:8px;font-size:12px;color:rgba(255,255,255,0.4)">últimos 30 días</div>
+      </div>
+      <a href="Prediccion-Rango.dc.html" style="text-decoration:none;color:inherit;background:#16213E;border:1px solid rgba(233,69,96,0.35);border-radius:14px;padding:20px;display:block">
+        <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.5)">Predicción de rango</div>
+        <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:30px;margin-top:6px;color:#E94560">Diamante 3</div>
+        <div style="margin-top:8px;font-size:12px;color:rgba(255,255,255,0.4)">confianza 82% · ver detalle →</div>
+      </a>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:24px;margin-bottom:32px">
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+          <span style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">Partidas recientes</span>
+          <a href="Analisis-Partida.dc.html" style="font-size:12.5px;text-decoration:none">Ver todas →</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <a href="Analisis-Partida.dc.html" style="text-decoration:none;color:inherit;background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden;display:block">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#4CD4E8"></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-left:8px">
+              <span style="font-weight:700;font-size:12.5px;color:#4CD4E8">VICTORIA</span>
+              <span style="font-size:11px;color:rgba(255,255,255,0.4)">hace 2h</span>
+            </div>
+            <div style="padding-left:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:13px;font-weight:600">Ascent · Jett</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px">18/6/9</span>
+            </div>
+          </a>
+          <a href="Analisis-Partida.dc.html" style="text-decoration:none;color:inherit;background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden;display:block">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#E94560"></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-left:8px">
+              <span style="font-weight:700;font-size:12.5px;color:#E94560">DERROTA</span>
+              <span style="font-size:11px;color:rgba(255,255,255,0.4)">hace 5h</span>
+            </div>
+            <div style="padding-left:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:13px;font-weight:600">Bind · Sova</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px">9/14/5</span>
+            </div>
+          </a>
+          <a href="Analisis-Partida.dc.html" style="text-decoration:none;color:inherit;background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 16px;position:relative;overflow:hidden;display:block">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#4CD4E8"></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-left:8px">
+              <span style="font-weight:700;font-size:12.5px;color:#4CD4E8">VICTORIA</span>
+              <span style="font-size:11px;color:rgba(255,255,255,0.4)">ayer</span>
+            </div>
+            <div style="padding-left:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:13px;font-weight:600">Haven · Omen</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px">15/8/11</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+          <span style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">Top recomendaciones</span>
+          <a href="Recomendaciones.dc.html" style="font-size:12.5px;text-decoration:none">Ver todas →</a>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <a href="Recomendaciones.dc.html" style="text-decoration:none;color:inherit;background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 16px;display:block">
+            <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;background:#0F3460;color:#fff;padding:3px 8px;border-radius:20px">Posicionamiento</span>
+            <div style="font-size:13px;line-height:1.5;color:rgba(255,255,255,0.8);margin-top:8px">Jugás muy adelantado en sitio B en Ascent. Rotá 2s más tarde.</div>
+          </a>
+          <a href="Recomendaciones.dc.html" style="text-decoration:none;color:inherit;background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:14px 16px;display:block">
+            <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;background:#F0C808;color:#1A1A2E;padding:3px 8px;border-radius:20px">Economía</span>
+            <div style="font-size:13px;line-height:1.5;color:rgba(255,255,255,0.8);margin-top:8px">Estás forzando compras en rondas de reconstrucción.</div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:32px">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+        <span style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">Coaches recomendados</span>
+        <a href="Coaching.dc.html" style="font-size:12.5px;text-decoration:none">Ver todos →</a>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+        <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:40px;height:40px;border-radius:50%;background:#0F3460;border:2px solid #E94560;flex-shrink:0"></div>
+            <div><div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13.5px">Alex "Reaper" M.</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4CD4E8">Radiant · ★ 4.9</div></div>
+          </div>
+        </div>
+        <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:40px;height:40px;border-radius:50%;background:#0F3460;border:2px solid #E94560;flex-shrink:0"></div>
+            <div><div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13.5px">Sam "Vex" T.</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4CD4E8">Inmortal 3 · ★ 4.7</div></div>
+          </div>
+        </div>
+        <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:16px">
+          <div style="display:flex;gap:12px;align-items:center">
+            <div style="width:40px;height:40px;border-radius:50%;background:#0F3460;border:2px solid #E94560;flex-shrink:0"></div>
+            <div><div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13.5px">Mia "Echo" K.</div><div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4CD4E8">Radiant · ★ 5.0</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:12px">
+        <span style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">Insignias recientes</span>
+        <a href="Gamificacion.dc.html" style="font-size:12.5px;text-decoration:none">Ver todas →</a>
+      </div>
+      <div style="display:flex;gap:20px">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:80px"><div style="width:44px;height:44px;background:#0F3460;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:2px solid #F0C808"></div><div style="font-size:11px;font-weight:600;text-align:center">Francotirador</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:80px"><div style="width:44px;height:44px;background:#0F3460;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:2px solid #E94560"></div><div style="font-size:11px;font-weight:600;text-align:center">Primera Sangre</div></div>
+        <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:80px"><div style="width:44px;height:44px;background:#0F3460;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:2px solid #4CD4E8"></div><div style="font-size:11px;font-weight:600;text-align:center">Racha x5</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+</body>
+</html>

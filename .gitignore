@@ -1,0 +1,28 @@
+# Claude Code local settings
+.claude/settings.local.json
+
+# OS
+.DS_Store
+
+# Env files
+.env
+.env.local
+
+# Node / build artifacts (frontend, se poblará en Fase 1/7)
+node_modules/
+dist/
+build/
+
+# Java
+target/
+*.class
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/

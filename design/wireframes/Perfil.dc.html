@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#1A1A2E}*{box-sizing:border-box}a{color:#4CD4E8}a:hover{color:#7fe3f5}</style>
+</helmet>
+<div style="font-family:'Inter',sans-serif;background:#1A1A2E;color:#fff;min-height:100vh;padding-bottom:80px">
+  <div style="position:sticky;top:0;z-index:10;height:64px;background:#16213E;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 32px">
+    <div style="display:flex;align-items:center;gap:36px">
+      <a href="Dashboard.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff">
+        <div style="width:16px;height:16px;background:#E94560;transform:rotate(45deg);border-radius:2px"></div>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:800;font-size:17px">VALORANT<span style="color:#E94560">HUB</span></span>
+      </a>
+      <div style="display:flex;gap:28px">
+        <a href="Dashboard.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Dashboard</a>
+        <a href="Analisis-Partida.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Análisis</a>
+        <a href="Recomendaciones.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Recomendaciones</a>
+        <a href="Coaching.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Coaching</a>
+        <span style="font-size:14px;font-weight:600;color:#fff;border-bottom:2px solid #E94560;padding-bottom:20px">Perfil</span>
+      </div>
+    </div>
+    <a href="Login-Register.dc.html" style="font-size:12.5px;text-decoration:none;color:rgba(255,255,255,0.5)">Cerrar sesión</a>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:40px 32px 0">
+    <div style="display:flex;gap:20px;align-items:center;margin-bottom:32px">
+      <div style="width:76px;height:76px;border-radius:50%;background:#0F3460;border:3px solid #E94560;flex-shrink:0"></div>
+      <div>
+        <h1 style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:800;margin:0">Kaito#NA1</h1>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#4CD4E8;margin-top:4px">Diamante 3 · 142 partidas</div>
+      </div>
+      <span style="margin-left:auto;font-size:12.5px;font-weight:700;border:1px solid rgba(255,255,255,0.2);padding:8px 16px;border-radius:8px;height:fit-content">Editar perfil</span>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:24px;margin-bottom:32px">
+      <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px">
+        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:16px">Evolución de rango</div>
+        <div style="display:flex;align-items:flex-end;gap:10px;height:160px">
+          <sc-for list="{{ rankHistory }}" as="r" hint-placeholder-count="6">
+            <div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%">
+              <div style="font-size:10px;color:rgba(255,255,255,0.4);margin-bottom:4px">{{ r.rank }}</div>
+              <div style="width:100%;background:#E94560;border-radius:4px 4px 0 0;height:{{ r.height }}"></div>
+              <div style="font-size:9px;color:rgba(255,255,255,0.35);margin-top:6px">{{ r.month }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px">
+        <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.7);margin-bottom:16px">Agentes más jugados</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <sc-for list="{{ agents }}" as="a" hint-placeholder-count="4">
+            <div>
+              <div style="display:flex;justify-content:space-between;font-size:12.5px;margin-bottom:6px"><span>{{ a.name }}</span><span style="color:rgba(255,255,255,0.5)">{{ a.pct }}%</span></div>
+              <div style="height:6px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden"><div style="height:100%;background:#4CD4E8;width:{{ a.pct }}%"></div></div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+
+    <a href="Prediccion-Rango.dc.html" style="text-decoration:none;color:inherit;display:block;background:#16213E;border:1px solid rgba(233,69,96,0.35);border-radius:14px;padding:20px;margin-bottom:32px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.5)">Predicción de rango</div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:22px;color:#E94560;margin-top:4px">Diamante 3 → Diamante 2 esperado</div>
+        </div>
+        <span style="font-size:13px">Ver detalle →</span>
+      </div>
+    </a>
+
+    <div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
+        <span style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">Insignias</span>
+        <a href="Gamificacion.dc.html" style="font-size:12.5px;text-decoration:none">Ver todas →</a>
+      </div>
+      <div style="display:flex;gap:20px;flex-wrap:wrap">
+        <sc-for list="{{ badges }}" as="b" hint-placeholder-count="6">
+          <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:76px;opacity:{{ b.opacity }}">
+            <div style="width:44px;height:44px;background:#0F3460;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:2px solid {{ b.color }}"></div>
+            <div style="font-size:10.5px;font-weight:600;text-align:center">{{ b.name }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    return {
+      rankHistory: [
+        { month:'Mar', rank:'Oro3', height:'30%' }, { month:'Abr', rank:'Plat1', height:'45%' },
+        { month:'May', rank:'Plat3', height:'55%' }, { month:'Jun', rank:'Dia1', height:'70%' },
+        { month:'Jul', rank:'Dia2', height:'85%' }, { month:'Ago', rank:'Dia3', height:'95%' }
+      ],
+      agents: [
+        { name:'Jett', pct:42 }, { name:'Reyna', pct:24 }, { name:'Omen', pct:18 }, { name:'Sova', pct:16 }
+      ],
+      badges: [
+        { name:'Francotirador', color:'#F0C808', opacity:1 }, { name:'Primera Sangre', color:'#E94560', opacity:1 },
+        { name:'Racha x5', color:'#4CD4E8', opacity:1 }, { name:'MVP x10', color:'#F0C808', opacity:1 },
+        { name:'100 partidas', color:'#4CD4E8', opacity:1 }, { name:'Bloqueada', color:'rgba(255,255,255,0.25)', opacity:0.4 }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

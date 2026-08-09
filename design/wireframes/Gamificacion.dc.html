@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>body{margin:0;background:#1A1A2E}*{box-sizing:border-box}a{color:#4CD4E8}a:hover{color:#7fe3f5}</style>
+</helmet>
+<div style="font-family:'Inter',sans-serif;background:#1A1A2E;color:#fff;min-height:100vh;padding-bottom:80px">
+  <div style="position:sticky;top:0;z-index:10;height:64px;background:#16213E;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 32px">
+    <div style="display:flex;align-items:center;gap:36px">
+      <a href="Dashboard.dc.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;color:#fff">
+        <div style="width:16px;height:16px;background:#E94560;transform:rotate(45deg);border-radius:2px"></div>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:800;font-size:17px">VALORANT<span style="color:#E94560">HUB</span></span>
+      </a>
+      <div style="display:flex;gap:28px">
+        <a href="Dashboard.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Dashboard</a>
+        <a href="Analisis-Partida.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Análisis</a>
+        <a href="Recomendaciones.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Recomendaciones</a>
+        <a href="Coaching.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Coaching</a>
+        <a href="Perfil.dc.html" style="font-size:14px;color:rgba(255,255,255,0.55);text-decoration:none" style-hover="color:#fff">Perfil</a>
+      </div>
+    </div>
+    <div style="width:34px;height:34px;border-radius:50%;background:#0F3460;border:2px solid #E94560"></div>
+  </div>
+
+  <div style="max-width:1100px;margin:0 auto;padding:40px 32px 0">
+    <a href="Perfil.dc.html" style="font-size:12.5px;text-decoration:none;color:rgba(255,255,255,0.5)">← Volver al perfil</a>
+    <h1 style="font-family:'DM Sans',sans-serif;font-size:24px;font-weight:800;margin:16px 0 20px">Insignias · 12 de 20 desbloqueadas</h1>
+
+    <div style="display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap">
+      <sc-for list="{{ rarities }}" as="r" hint-placeholder-count="4">
+        <div onclick="{{ setRarity(r.key) }}" style="cursor:pointer;font-size:13px;font-weight:600;padding:8px 16px;border-radius:20px;background:{{ r.bg }};color:#fff;border:1px solid {{ r.border }}">{{ r.label }}</div>
+      </sc-for>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:20px">
+      <sc-for list="{{ visibleBadges }}" as="b" hint-placeholder-count="12">
+        <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:14px;padding:20px;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:{{ b.opacity }}">
+          <div style="width:56px;height:56px;background:#0F3460;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:2px solid {{ b.color }}"></div>
+          <div style="font-size:12.5px;font-weight:700;text-align:center">{{ b.name }}</div>
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.05em;color:{{ b.color }}">{{ b.rarity }}</div>
+          <sc-if value="{{ b.locked }}" hint-placeholder-val="{{ false }}">
+            <div style="width:100%;height:5px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden"><div style="height:100%;width:{{ b.progress }};background:#4CD4E8"></div></div>
+          </sc-if>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { rarity: 'all' };
+  all = [
+    { name:'Francotirador', rarity:'legendaria', key:'leg', color:'#F0C808', locked:false },
+    { name:'Primera Sangre', rarity:'común', key:'com', color:'rgba(255,255,255,0.4)', locked:false },
+    { name:'Racha x5', rarity:'rara', key:'rar', color:'#4CD4E8', locked:false },
+    { name:'MVP x10', rarity:'legendaria', key:'leg', color:'#F0C808', locked:false },
+    { name:'100 partidas', rarity:'común', key:'com', color:'rgba(255,255,255,0.4)', locked:false },
+    { name:'Ace', rarity:'épica', key:'epi', color:'#E94560', locked:false },
+    { name:'Clutch 1v3', rarity:'épica', key:'epi', color:'#E94560', locked:false },
+    { name:'Analista', rarity:'rara', key:'rar', color:'#4CD4E8', locked:false },
+    { name:'Mentor', rarity:'rara', key:'rar', color:'#4CD4E8', locked:false },
+    { name:'Racha x10', rarity:'épica', key:'epi', color:'rgba(255,255,255,0.25)', locked:true, progress:'40%' },
+    { name:'Radiante', rarity:'legendaria', key:'leg', color:'rgba(255,255,255,0.25)', locked:true, progress:'15%' },
+    { name:'500 partidas', rarity:'común', key:'com', color:'rgba(255,255,255,0.25)', locked:true, progress:'70%' }
+  ];
+  renderVals() {
+    const rarities = [
+      { key:'all', label:'Todas' }, { key:'com', label:'Común' }, { key:'rar', label:'Rara' },
+      { key:'epi', label:'Épica' }, { key:'leg', label:'Legendaria' }
+    ].map(r => ({ ...r, bg: this.state.rarity===r.key ? '#E94560' : '#16213E', border: this.state.rarity===r.key ? '#E94560' : 'rgba(255,255,255,0.1)' }));
+    const visibleBadges = (this.state.rarity==='all' ? this.all : this.all.filter(b=>b.key===this.state.rarity))
+      .map(b => ({ ...b, opacity: b.locked ? 0.5 : 1 }));
+    return { rarities, visibleBadges, setRarity: (k)=>()=>this.setState({rarity:k}) };
+  }
+}
+</script>
+</body>
+</html>
