@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:wght@500;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#1A1A2E}
+* {box-sizing:border-box}
+::selection{background:#E94560;color:#fff}
+a{color:#4CD4E8}
+a:hover{color:#7fe3f5}
+</style>
+</helmet>
+
+<div style="font-family:'Inter',sans-serif;background:#1A1A2E;color:#fff;min-height:100vh;padding-bottom:80px">
+
+  <!-- NAV BAR (also serves as live component) -->
+  <div data-screen-label="nav-bar" style="position:sticky;top:0;z-index:10;height:64px;background:#16213E;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:space-between;padding:0 32px">
+    <div style="display:flex;align-items:center;gap:36px">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:16px;height:16px;background:#E94560;transform:rotate(45deg);border-radius:2px"></div>
+        <span style="font-family:'DM Sans',sans-serif;font-weight:800;font-size:17px;letter-spacing:0.3px">VALORANT<span style="color:#E94560">HUB</span></span>
+      </div>
+      <div style="display:flex;gap:28px">
+        <span style="font-size:14px;font-weight:600;color:#fff;border-bottom:2px solid #E94560;padding-bottom:20px">Dashboard</span>
+        <span style="font-size:14px;color:rgba(255,255,255,0.55)">Análisis</span>
+        <span style="font-size:14px;color:rgba(255,255,255,0.55)">Recomendaciones</span>
+        <span style="font-size:14px;color:rgba(255,255,255,0.55)">Coaching</span>
+        <span style="font-size:14px;color:rgba(255,255,255,0.55)">Perfil</span>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:14px">
+      <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;color:#4CD4E8;background:rgba(76,212,232,0.1);padding:4px 10px;border-radius:4px">DIAMANTE 3</span>
+      <div style="width:34px;height:34px;border-radius:50%;background:#0F3460;border:2px solid #E94560"></div>
+    </div>
+  </div>
+
+  <div style="max-width:1200px;margin:0 auto;padding:48px 32px 0">
+
+    <!-- INTRO -->
+    <div data-screen-label="intro" style="margin-bottom:56px">
+      <h1 style="font-family:'DM Sans',sans-serif;font-size:34px;font-weight:800;margin:0 0 8px">Sistema de diseño</h1>
+      <p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:640px;line-height:1.6;margin:0">Paleta, tipografía y componentes base para las 8 pantallas de ValorantHub. Esta especificación se usa como referencia visual antes de implementar el frontend en React.</p>
+    </div>
+
+    <!-- TOKENS: COLOR -->
+    <div data-screen-label="tokens-color" style="margin-bottom:48px">
+      <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:16px">Paleta</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <sc-for list="{{ swatches }}" as="sw" hint-placeholder-count="6">
+          <div style="width:150px">
+            <div style="height:72px;border-radius:10px;background:{{ sw.hex }};border:1px solid rgba(255,255,255,0.1)"></div>
+            <div style="margin-top:8px;font-size:13px;font-weight:600">{{ sw.name }}</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-size:12px;color:rgba(255,255,255,0.45)">{{ sw.hex }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+
+    <!-- TOKENS: TYPE -->
+    <div data-screen-label="tokens-type" style="margin-bottom:56px">
+      <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:16px">Tipografía</div>
+      <div style="display:flex;gap:48px;flex-wrap:wrap">
+        <div>
+          <div style="font-family:'DM Sans',sans-serif;font-weight:800;font-size:28px">Título — DM Sans 800</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px">Encabezados, nav, nombres de coach</div>
+        </div>
+        <div>
+          <div style="font-family:'Inter',sans-serif;font-size:16px">Texto de interfaz — Inter 400/600</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px">Cuerpo, labels, botones</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:24px;color:#4CD4E8">1.34 KDA</div>
+          <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:4px">Estadísticas numéricas</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPONENT GALLERY -->
+    <div data-screen-label="components" style="margin-bottom:64px">
+      <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:20px">Componentes base</div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:24px;align-items:start">
+
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#E94560;margin-bottom:10px">stat-card</div>
+          <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:{{ cardPad }}">
+            <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.5)">Winrate</div>
+            <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:32px;margin-top:6px">58%</div>
+            <div style="display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:12px;font-weight:600;color:#4CD4E8;background:rgba(76,212,232,0.12);padding:2px 8px;border-radius:20px">▲ 4.2%</div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#E94560;margin-bottom:10px">match-card</div>
+          <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:{{ cardPad }};position:relative;overflow:hidden">
+            <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:#4CD4E8"></div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;padding-left:8px">
+              <span style="font-weight:700;font-size:13px;color:#4CD4E8">VICTORIA</span>
+              <span style="font-size:11px;color:rgba(255,255,255,0.4)">hace 2h</span>
+            </div>
+            <div style="padding-left:8px;margin-top:6px;font-size:14px;font-weight:600">Ascent · Competitiva</div>
+            <div style="padding-left:8px;margin-top:8px;display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:12px;color:rgba(255,255,255,0.55)">Jett</span>
+              <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:15px">18 / 6 / 9</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#E94560;margin-bottom:10px">tip-card</div>
+          <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:{{ cardPad }}">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+              <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;background:#0F3460;color:#fff;padding:3px 9px;border-radius:20px">Posicionamiento</span>
+              <span style="width:7px;height:7px;border-radius:50%;background:#E94560"></span>
+            </div>
+            <div style="font-size:13.5px;line-height:1.5;color:rgba(255,255,255,0.85)">Jugás demasiado adelantado en sitio B en Ascent. Rotá 2s más tarde tras el primer intercambio.</div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#E94560;margin-bottom:10px">coach-card</div>
+          <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:{{ cardPad }}">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="width:44px;height:44px;border-radius:50%;background:#0F3460;border:2px solid #E94560;flex-shrink:0"></div>
+              <div>
+                <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:14px">Alex "Reaper" M.</div>
+                <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4CD4E8">Radiant · ★ 4.9</div>
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;margin-top:12px">
+              <span style="font-size:11px;background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:20px">Jett</span>
+              <span style="font-size:11px;background:rgba(255,255,255,0.08);padding:3px 8px;border-radius:20px">Chamber</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-top:14px">
+              <span style="font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700">$15/sesión</span>
+              <span style="font-size:12px;font-weight:700;background:#E94560;padding:7px 14px;border-radius:6px">Reservar</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#E94560;margin-bottom:10px">badge-item</div>
+          <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:{{ cardPad }};display:flex;flex-direction:column;align-items:center;gap:10px">
+            <div style="width:52px;height:52px;background:#0F3460;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:2px solid #F0C808"></div>
+            <div style="font-size:12px;font-weight:700;text-align:center">Francotirador</div>
+            <div style="font-size:10px;color:#F0C808;text-transform:uppercase;letter-spacing:0.05em">Legendaria</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MOCKUP -->
+    <div data-screen-label="mockup-dashboard">
+      <div style="font-family:'DM Sans',sans-serif;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.4);margin-bottom:20px">Mockup — Dashboard con todos los componentes juntos</div>
+
+      <div style="background:#141428;border:1px solid rgba(255,255,255,0.06);border-radius:16px;padding:32px">
+
+        <!-- stat row -->
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:28px">
+          <sc-for list="{{ stats }}" as="s" hint-placeholder-count="4">
+            <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:{{ cardPad }}">
+              <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:rgba(255,255,255,0.5)">{{ s.label }}</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:30px;margin-top:6px;color:{{ s.color }}">{{ s.value }}</div>
+              <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-top:6px">{{ s.sub }}</div>
+            </div>
+          </sc-for>
+        </div>
+
+        <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:24px;margin-bottom:28px">
+
+          <!-- matches -->
+          <div>
+            <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:12px">Partidas recientes</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ matches }}" as="m" hint-placeholder-count="3">
+                <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:14px 16px;position:relative;overflow:hidden">
+                  <div style="position:absolute;left:0;top:0;bottom:0;width:4px;background:{{ m.color }}"></div>
+                  <div style="display:flex;justify-content:space-between;align-items:baseline;padding-left:8px">
+                    <span style="font-weight:700;font-size:12.5px;color:{{ m.color }}">{{ m.result }}</span>
+                    <span style="font-size:11px;color:rgba(255,255,255,0.4)">{{ m.time }}</span>
+                  </div>
+                  <div style="padding-left:8px;margin-top:4px;display:flex;justify-content:space-between;align-items:center">
+                    <span style="font-size:13px;font-weight:600">{{ m.map }} · {{ m.agent }}</span>
+                    <span style="font-family:'JetBrains Mono',monospace;font-weight:700;font-size:14px">{{ m.kda }}</span>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <!-- tips -->
+          <div>
+            <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:12px">Recomendaciones</div>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ tips }}" as="t" hint-placeholder-count="3">
+                <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:14px 16px">
+                  <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
+                    <span style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;background:{{ t.tagBg }};color:#fff;padding:3px 8px;border-radius:20px">{{ t.category }}</span>
+                  </div>
+                  <div style="font-size:13px;line-height:1.5;color:rgba(255,255,255,0.8)">{{ t.text }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+        </div>
+
+        <!-- coaches -->
+        <div style="margin-bottom:28px">
+          <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:12px">Coaches recomendados</div>
+          <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px">
+            <sc-for list="{{ coaches }}" as="c" hint-placeholder-count="3">
+              <div style="background:#16213E;border:1px solid rgba(255,255,255,0.08);border-radius:{{ radius }};padding:{{ cardPad }}">
+                <div style="display:flex;gap:12px;align-items:center">
+                  <div style="width:40px;height:40px;border-radius:50%;background:#0F3460;border:2px solid #E94560;flex-shrink:0"></div>
+                  <div>
+                    <div style="font-family:'DM Sans',sans-serif;font-weight:700;font-size:13.5px">{{ c.name }}</div>
+                    <div style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4CD4E8">{{ c.rank }} · ★ {{ c.rating }}</div>
+                  </div>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px">
+                  <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700">{{ c.price }}</span>
+                  <span style="font-size:11px;font-weight:700;background:#E94560;padding:6px 12px;border-radius:6px">Reservar</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- badges -->
+        <div>
+          <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,0.55);margin-bottom:12px">Insignias</div>
+          <div style="display:flex;gap:20px;flex-wrap:wrap">
+            <sc-for list="{{ badges }}" as="b" hint-placeholder-count="5">
+              <div style="display:flex;flex-direction:column;align-items:center;gap:8px;width:88px;opacity:{{ b.opacity }}">
+                <div style="width:48px;height:48px;background:#0F3460;clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);border:2px solid {{ b.color }}"></div>
+                <div style="font-size:11px;font-weight:600;text-align:center">{{ b.name }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;cornerStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;soft&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;angular&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Estilo&quot;},&quot;density&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;comfortable&quot;,&quot;options&quot;:[&quot;comfortable&quot;,&quot;compact&quot;],&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Estilo&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const corners = this.props.cornerStyle ?? 'soft';
+    const density = this.props.density ?? 'comfortable';
+    const radius = corners === 'angular' ? '4px' : '14px';
+    const cardPad = density === 'compact' ? '14px' : '20px';
+
+    return {
+      radius, cardPad,
+      swatches: [
+        { name: 'Primary', hex: '#E94560' },
+        { name: 'Background', hex: '#1A1A2E' },
+        { name: 'Accent', hex: '#0F3460' },
+        { name: 'Surface', hex: '#16213E' },
+        { name: 'Neón cyan', hex: '#4CD4E8' },
+        { name: 'Gold (legendaria)', hex: '#F0C808' }
+      ],
+      stats: [
+        { label: 'KDA', value: '1.34', sub: 'últimas 20 partidas', color: '#fff' },
+        { label: 'Winrate', value: '58%', sub: '+4.2% este mes', color: '#4CD4E8' },
+        { label: 'Partidas', value: '142', sub: 'analizadas', color: '#fff' },
+        { label: 'Predicción', value: 'D3', sub: 'rango estimado', color: '#E94560' }
+      ],
+      matches: [
+        { result: 'VICTORIA', color: '#4CD4E8', map: 'Ascent', agent: 'Jett', kda: '18/6/9', time: 'hace 2h' },
+        { result: 'DERROTA', color: '#E94560', map: 'Bind', agent: 'Sova', kda: '9/14/5', time: 'hace 5h' },
+        { result: 'VICTORIA', color: '#4CD4E8', map: 'Haven', agent: 'Omen', kda: '15/8/11', time: 'ayer' }
+      ],
+      tips: [
+        { category: 'Posicionamiento', tagBg: '#0F3460', text: 'Jugás muy adelantado en sitio B en Ascent. Rotá 2s más tarde.' },
+        { category: 'Economía', tagBg: '#F0C808', text: 'Estás forzando compras en rondas de reconstrucción. Guarda para full-buy.' },
+        { category: 'Habilidades', tagBg: '#4CD4E8', text: 'Tu Sova dart llega tarde en retakes. Practicá los line-ups de A Site.' }
+      ],
+      coaches: [
+        { name: 'Alex "Reaper" M.', rank: 'Radiant', rating: '4.9', price: '$15/sesión' },
+        { name: 'Sam "Vex" T.', rank: 'Inmortal 3', rating: '4.7', price: '$10/sesión' },
+        { name: 'Mia "Echo" K.', rank: 'Radiant', rating: '5.0', price: '$20/sesión' }
+      ],
+      badges: [
+        { name: 'Francotirador', color: '#F0C808', opacity: 1 },
+        { name: 'Primera Sangre', color: '#E94560', opacity: 1 },
+        { name: 'Racha x5', color: '#4CD4E8', opacity: 1 },
+        { name: 'MVP x10', color: '#F0C808', opacity: 1 },
+        { name: 'Bloqueada', color: 'rgba(255,255,255,0.25)', opacity: 0.4 }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
