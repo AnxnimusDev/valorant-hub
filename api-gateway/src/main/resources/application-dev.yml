@@ -1,0 +1,8 @@
+# Perfil de desarrollo local (docker-compose)
+logging:
+  level:
+    root: INFO
+    com.valoranthub: DEBUG
+
+# Se completará en Fase 7: Spring Cloud Gateway (rutas a los 5 microservicios),
+# JwtAuthGatewayFilter, CORS centralizado y rate limiting con Redis.
