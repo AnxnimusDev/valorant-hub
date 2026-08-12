@@ -14,7 +14,7 @@ Plataforma de análisis de rendimiento, coaching y predicción de rango para jug
 | Comunicación sync interna | gRPC (prediction-service) |
 | Gateway | Spring Cloud Gateway + JWT + Rate Limiting (Redis) |
 | Persistencia | PostgreSQL 16 (transaccional), MongoDB 7 (resultados de análisis), Redis 7 (cache/pub-sub) |
-| Frontend | React 18 + TypeScript + Vite + Tailwind CSS + TanStack Query |
+| Frontend | React 19 + TypeScript + Vite + Tailwind CSS v4 + TanStack Query |
 | Diseño UI | Claude Design (wireframes y sistema de diseño, antes de escribir código de UI) |
 | IA generativa | Claude Code (desarrollo asistido), LLM para motor de recomendaciones |
 | Observabilidad | OpenTelemetry, Jaeger, Loki + Promtail, Grafana |
@@ -111,14 +111,16 @@ Los wireframes aprobados se guardan como referencia en `design/wireframes/` y si
 ```
 valoranthub/
 ├── CLAUDE.md                    ← contexto global para Claude Code
-├── infra/                       ← docker-compose, configs, scripts
+├── docker-compose.yml           ← infra: postgres/redis/kafka/zookeeper/mongo
+├── .env.example
+├── Makefile                     ← up/down/logs/rebuild-<servicio>/clean/build/test
 ├── match-service/                ← Java + CLAUDE.md local
-├── ai-analysis-service/          ← Python FastAPI + CLAUDE.md local
+├── ai-analysis-service/          ← Java (+ python-ml/ desde Fase 3) + CLAUDE.md local
 ├── recommendation-engine/        ← Java + CLAUDE.md local
 ├── coaching-platform/            ← Java + CLAUDE.md local
 ├── prediction-service/           ← Java (gRPC client) + CLAUDE.md local
-│   └── python-predictor/         ← servidor gRPC Python
-├── api-gateway/                  ← Spring Cloud Gateway
+│   └── python-predictor/         ← servidor gRPC Python (Fase 6)
+├── api-gateway/                  ← Spring Cloud Gateway (Fase 7) + CLAUDE.md local
 ├── frontend/                     ← React + TypeScript + Vite
 ├── design/
 │   └── wireframes/               ← mockups generados con Claude Design
@@ -144,11 +146,14 @@ Detalle completo por sprint en `docs/GUIA-IMPLEMENTACION.md`.
 ## Cómo ejecutar en local
 
 ```bash
-git clone https://github.com/<tu-usuario>/valoranthub.git
-cd valoranthub
+git clone https://github.com/AnxnimusDev/valorant-hub.git
+cd valorant-hub
 cp .env.example .env   # rellena RIOT_API_KEY, ANTHROPIC_API_KEY, etc.
-make up                 # docker compose up --build
+make up                 # infra: postgres/redis/kafka/zookeeper/mongo
+make test                # ./mvnw test en los 6 microservicios
 ```
+
+Cada microservicio se ejecuta suelto con `./mvnw spring-boot:run` dentro de su carpeta (o `make rebuild-<servicio>` para construir su imagen Docker). Se van incorporando a `docker-compose.yml` servicio a servicio a medida que cada fase los deja funcionales — ver `docs/GUIA-IMPLEMENTACION.md`.
 
 ## Licencia
 
