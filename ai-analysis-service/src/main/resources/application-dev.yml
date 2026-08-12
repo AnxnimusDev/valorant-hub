@@ -1,0 +1,8 @@
+# Perfil de desarrollo local (docker-compose)
+logging:
+  level:
+    root: INFO
+    com.valoranthub: DEBUG
+
+# Se completará en Fase 3: consumer/producer Kafka, MongoDB, y el submódulo
+# python-ml/ (FastAPI) con los 4 analizadores.

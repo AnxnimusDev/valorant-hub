@@ -1,0 +1,8 @@
+# Perfil de desarrollo local (docker-compose)
+logging:
+  level:
+    root: INFO
+    com.valoranthub: DEBUG
+
+# Se completará en Fase 5: Spring Security + JWT, matchmaking, WebSocket
+# STOMP con Redis pub/sub, y persistencia en Postgres.

@@ -1,0 +1,8 @@
+# Perfil de desarrollo local (docker-compose)
+logging:
+  level:
+    root: INFO
+    com.valoranthub: DEBUG
+
+# Se completará en Fase 6: PredictionGrpcClient hacia python-predictor
+# (gRPC :50051) y el endpoint REST de predicción.

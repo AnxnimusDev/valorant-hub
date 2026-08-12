@@ -1,0 +1,8 @@
+# Perfil de desarrollo local (docker-compose)
+logging:
+  level:
+    root: INFO
+    com.valoranthub: DEBUG
+
+# Se completará en Fase 4: consumer Kafka de match.analysis.completed,
+# cliente LLM y persistencia de recomendaciones en Postgres.

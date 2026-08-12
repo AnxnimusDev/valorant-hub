@@ -1,0 +1,7 @@
+# Perfil de desarrollo local (docker-compose)
+logging:
+  level:
+    root: INFO
+    com.valoranthub: DEBUG
+
+# Se completará en Fase 2 con datasource Postgres, Redis y RiotApiClient.

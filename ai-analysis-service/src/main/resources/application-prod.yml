@@ -1,0 +1,10 @@
+# Perfil de producción
+logging:
+  level:
+    root: WARN
+    com.valoranthub: INFO
+
+management:
+  endpoint:
+    health:
+      show-details: never

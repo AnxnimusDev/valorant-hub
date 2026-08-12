@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens — extraídos de design/wireframes/ValorantHub Design System.dc.html
+ * (Fase 0, aprobado con Claude Design). Cualquier cambio de paleta/tipografía
+ * debe reflejarse primero ahí, luego aquí.
+ */
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-display: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* Superficies */
+  --color-bg: #1a1a2e;
+  --color-surface: #16213e;
+  --color-surface-deep: #141428;
+
+  /* Marca / acentos */
+  --color-primary: #e94560;
+  --color-accent: #4cd4e8;
+  --color-accent-hover: #7fe3f5;
+  --color-accent-2: #0f3460;
+  --color-legendary: #f0c808;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: #fff;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::selection {
+  background: var(--color-primary);
+  color: #fff;
+}
+
+a {
+  color: var(--color-accent);
+}
+a:hover {
+  color: var(--color-accent-hover);
+}
