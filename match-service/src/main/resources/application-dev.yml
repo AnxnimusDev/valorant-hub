@@ -3,5 +3,12 @@ logging:
   level:
     root: INFO
     com.valoranthub: DEBUG
+    org.hibernate.SQL: DEBUG
 
-# Se completará en Fase 2 con datasource Postgres, Redis y RiotApiClient.
+spring:
+  jpa:
+    properties:
+      hibernate:
+        format_sql: true
+
+# Redis y RiotApiClient se añaden en los siguientes bloques de la Fase 2.

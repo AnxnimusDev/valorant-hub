@@ -7,6 +7,47 @@ name: CI
     branches: [main, develop]
 
 jobs:
+  # match-service es el único servicio con datasource propio por ahora (JPA +
+  # Flyway desde Fase 2) — va en un job aparte con un Postgres real de
+  # servicio, en vez de en la matriz de abajo, que no lo provee.
+  match-service:
+    name: build (match-service)
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: valoranthub
+          POSTGRES_USER: valoranthub
+          POSTGRES_PASSWORD: valoranthub_ci
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U valoranthub -d valoranthub"
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      POSTGRES_HOST: localhost
+      POSTGRES_PORT: 5432
+      POSTGRES_DB: valoranthub
+      POSTGRES_USER: valoranthub
+      POSTGRES_PASSWORD: valoranthub_ci
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+          cache-dependency-path: match-service/pom.xml
+
+      - name: Build & test
+        working-directory: match-service
+        run: ./mvnw -B clean verify
+
   backend:
     name: build (${{ matrix.service }})
     runs-on: ubuntu-latest
@@ -14,7 +55,6 @@ jobs:
       fail-fast: false
       matrix:
         service:
-          - match-service
           - ai-analysis-service
           - recommendation-engine
           - coaching-platform

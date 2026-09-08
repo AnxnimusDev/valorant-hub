@@ -3,6 +3,21 @@ spring:
     name: match-service
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:dev}
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${POSTGRES_PORT:5432}/${POSTGRES_DB:valoranthub}
+    username: ${POSTGRES_USER:valoranthub}
+    password: ${POSTGRES_PASSWORD:changeme_postgres}
+    hikari:
+      maximum-pool-size: 10
+  jpa:
+    open-in-view: false
+    hibernate:
+      # El esquema lo gestiona Flyway; Hibernate solo valida que las
+      # entidades coincidan con lo migrado.
+      ddl-auto: validate
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
 
 server:
   port: 8081
