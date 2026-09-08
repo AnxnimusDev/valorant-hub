@@ -19,6 +19,30 @@ spring:
     enabled: true
     locations: classpath:db/migration
 
+riot-api:
+  key: ${RIOT_API_KEY:}
+  regional-routing: ${RIOT_REGIONAL_ROUTING:americas}
+  platform-routing: ${RIOT_PLATFORM_ROUTING:na}
+
+resilience4j:
+  ratelimiter:
+    instances:
+      riotApi:
+        # Límite por defecto de una dev key de Riot: 20 req/s.
+        limit-for-period: 20
+        limit-refresh-period: 1s
+        timeout-duration: 5s
+  circuitbreaker:
+    instances:
+      riotApi:
+        sliding-window-type: count_based
+        sliding-window-size: 20
+        minimum-number-of-calls: 10
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 30s
+        permitted-number-of-calls-in-half-open-state: 5
+        automatic-transition-from-open-to-half-open-enabled: true
+
 server:
   port: 8081
 
