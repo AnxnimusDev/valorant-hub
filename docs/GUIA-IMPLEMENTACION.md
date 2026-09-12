@@ -316,6 +316,8 @@ Igual que en el plan original — no inicies una fase sin que su dependencia est
 
 *(Se elimina la entrada de Google Stitch del plan original — sustituida por Claude Design, ya integrado en tu flujo de chat, sin cuenta ni coste adicional.)*
 
+*(Nota sobre la Production Key, 2026-09-12: Riot no la concede para uso personal/testing — la solicitud debe dejar claro un plan de despliegue público. La aprobación no incluye RSO: el acceso a RSO se solicita aparte, solo después de aprobada la Production Key, con 30 días para implementarlo antes de perderla. Ver sección 5.)*
+
 ---
 
 ## 5. Riesgos técnicos clave (condensado)
@@ -323,6 +325,9 @@ Igual que en el plan original — no inicies una fase sin que su dependencia est
 | Riesgo | Mitigación |
 |---|---|
 | Riot API Dev Key expira cada 24h | Solicitar Production Key el día 1; script de renovación mientras tanto |
+| VAL-MATCH-V1 (historial/detalle de partidas) exige Production Key — confirmado 2026-09-09: la Dev Key da 403 solo ahí, 200 en account-v1/val-content-v1 | Mientras no se apruebe: verificar match-service con RiotApiClient mockeado (Mockito) contra Postgres real, no bloquear el resto de bloques por esto |
+| Riot no concede Production Key para "uso personal/testing"; la revisión pide demo pública o credenciales de acceso | En la solicitud, dejar claro el plan de despliegue público; tener un staging accesible listo si Riot lo pide antes de Fase 10 |
+| RSO (Riot Sign-On) es obligatorio para mostrar stats de jugadores una vez hay Production Key — solo se puede solicitar después de aprobada, con 30 días para implementarlo o se pierde la key | Diseñar coaching-platform (Fase 5) con dos capas de auth desde el principio: login propio (JWT) + conexión de cuenta Riot vía RSO; el import por Riot ID libre de match-service (Fase 2) es interino, no el diseño final |
 | Rate limits de Riot API | Resilience4j RateLimiter + caché Redis agresiva desde Fase 2 |
 | Modelo de predicción con accuracy baja | Dataset mínimo 10.000 partidas (Kaggle), iterar features antes que complejidad del modelo |
 | WebSocket no escala sin pub/sub | Redis pub/sub configurado desde el día 1 de Fase 5, no como parche posterior |
